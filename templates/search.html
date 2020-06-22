@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href= "https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href={{ url_for('static', filename = 'styles.css')}}>
+    <title>Search page</title>
+    <style>
+    .book-container {
+      border: 3px solid white;
+      padding: 20px 40px 40px;
+      margin-top:2%;
+      margin-left:25%;
+      margin-right:45%;
+
+    }
+    .book-container p{
+      display: inline-block;
+      width: 55%;
+      margin-left: 4%;
+      border: 1px solid lightgray;
+
+    }
+    .book-container img{
+        display: inline-block;
+        vertical-align: top;
+        margin-top:2%;
+       }
+    </style>
+  </head>
+  <body>
+    <div class="container-2">
+    <div class = "search">Search books</div>
+      <div class = "main">
+      <form action = "{{url_for('search')}}" method = "post">
+          <div class = "input-block">
+          <label for="book" class="input-label">Search here</label>
+          <p><input type = "text" id = "book" name = "book" placeholder = "ISBN, Title or Author"></p>
+        </div>
+          </div>
+        <p><button class="btn">Search</button></p>
+      </form>
+      </div>
+
+      <div class = "book-container">
+        {% for item in data %}
+              <img src="http://covers.openlibrary.org/b/isbn/{{item.isbn}}-M.jpg" />
+              <p><a href = "{{url_for('display', type = item.isbn) }}">Isbn: {{item.isbn}}<br>Title: {{item.title}} by {{item.author}} in year {{item.year}}</a><br></p>
+        {% endfor %}
+    </div>
+  </body>
+</html>

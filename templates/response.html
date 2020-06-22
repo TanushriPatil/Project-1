@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href={{ url_for('static', filename = 'styles.css')}}>
+
+    <title>Hi {{username}}!</title>
+  </head>
+  <body>
+      <div class = "search">
+        {% for item in data %}
+          {{ item.title }}
+        {% endfor %}
+      </div>
+      <p><br>
+          <div class = "info-cont">
+
+          <img src="http://covers.openlibrary.org/b/isbn/{{ book_isbn }}-L.jpg" />
+
+        <br><p>Book ID: {{ book_id }}
+        <br>Isbn no.: {{ book_isbn }}
+        {% for item in data %}
+        <br>Title: {{ item.title }}
+        <br>Author: {{ item.author }}
+        {% endfor %}
+        <br>Goodread's average rating: {{ book_rating }}</p>
+
+
+    </div>
+    <div class = "main2">
+    <b>Write a review</b>
+      <form action = "{{url_for('review', type = book_isbn)}}" method = "post">
+
+          <input type = "text" id="review" name="review" placeholder="Write  a review"><br>
+
+          <b>How would you rate the above book?</b>
+        </div>
+          <p class = "main3">
+          <input type = "radio" name="rate" value="1">1</br>
+          <input type = "radio" name="rate" value="2">2</br>
+          <input type = "radio" name="rate" value="3">3</br>
+          <input type = "radio" name="rate" value="4">4</br>
+          <input type = "radio" name="rate" value="5">5</br>
+        </p>
+          <button class = "btn">Submit</button>
+      </form>
+      <br>
+    <div class = "main2">
+      <b>REVIEWS</b>
+    </div>
+      <div class = "main4">
+        <p>Average Rating: {{ avg_rating }}</p>
+    </div>
+    <div class = "forloop">
+      {% for item in reviews %}
+      <ul>
+            <li>Written by <b>@{{item.username}}</b><br>{{ item.review }}<br>Rated: {{ item.scale }}</li>
+      </ul>
+      {% endfor %}
+    </div>
+      <br>
+      <div class="modal-1"><a href="http://127.0.0.1:5000/loggedin/search">Search another book</a></div><br>
+      <button class = "btn"><a href="http://127.0.0.1:5000/logout">LOGOUT</a><button>
+
+    </div>
+  </body>
+</html>

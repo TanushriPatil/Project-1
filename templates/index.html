@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href={{ url_for('static', filename = 'styles.css')}}>
+    <title> Register</title>
+  </head>
+  <body>
+    <div class = "container">
+      <div class = "header">
+        REGISTER
+      </div>
+        <div class = "main">
+          <form action="{{ url_for('register') }}" method="post">
+            <div class = "input-block">
+            <label for="name" class="input-label">Name</label>
+            <p><input type="text" id="name" name="name" placeholder="Full name"></p>
+            </div>
+            <div class = "input-block">
+            <label for="username" class="input-label">Username</label>
+            <p><input type="text" id="username" name="username" placeholder="Username"></p>
+            </div>
+            <div class = "input-block">
+            <label for="password" class="input-label">Password</label>
+            <p><input type="password" id="password" name="password" placeholder="Password"</p>
+            </div>
+            <div class = "input-block">
+            <label for="age" class="input-label">Age</label>
+            <p><input type="number" id="age" name="age" placeholder="Age"></p>
+            </div>
+            <p><button>Register</button></p>
+          </form>
+          <div class="modal"><a href="http://127.0.0.1:5000/login">or LOGIN</a></div>
+        </div>
+      </div>
+  </body>
+</html>
